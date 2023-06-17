@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="./static/vendor/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="./static/simulator/css/simstyle.css">
+	<script src="./static/vendor/js/jquery-3.3.1.slim.min.js"></script>
+	<script src="./static/vendor/js/popper.min.js"></script>
+	<script src="./static/vendor/js/bootstrap.min.js"></script>
+	<script src="./static/vendor/js/p5.min.js"></script>
+	<script type="module" src="./static/simulator/js/simulator.js"></script>
+	<title>VDLC</title>
+</head>
+
+<body>
+
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+		<a class="navbar-brand text-center" href="#">
+			VDLC
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+			aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarCollapse">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<div class="navGroupTools">
+						<button type="button" class="btn btn-outline-light Edit active" tool="Edit"
+							onclick="activeTool(this)">
+							<i class="fa fa-edit"></i>
+							Edit
+						</button>
+						<button type="button" class="btn btn-outline-light" tool="Move" onclick="activeTool(this)">
+							<i class="fa fa-arrows"></i>
+							Move
+						</button>
+						<button type="button" class="btn btn-outline-light" tool="Delete" onclick="activeTool(this)"">
+              				<i class=" fa fa-trash-o"></i>
+							Delete
+						</button>
+					</div>
+
+					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="exampleModalLabel">Logic Gate Tool Project</h5>
+					      </div>
+					      <div class="modal-body">
+									<p class="text-justify">A website that can simulate simple logic circuits. Collaboratively
+										made by <del>future</del> engineers Prince Adeyemi Rasheed, Jan Adams Gempes, and Billy Joe Ivan Cardeño,
+										in fulfillment of a semester-end project in CPEN116 (Online Technology) headed by Mrs. Eileen Rocillo.
+									  <p class="font-italic">How-to:</p>
+										<ul>
+									<li>Click on a component on the left then click on the canvas to place it.</li>
+									<li>Components can be linked by clicking on either the input or output nodes of the target components.</li>
+									<li>The first component is a logic input, switch it on/off by double clicking it.</li>
+									<li>The second component indicates the logic output.</p></li>
+								</ul>
+									<p>This project uses the following libraries:</p>
+									<ul>
+									<li>Bootstrap CSS v.4.3.1</li>
+									<li>Bootstrap.js v.5.0.1 </li>
+									<li>jQuery v.3.3.1</li>
+									<li>p5.js v.0.9.0</li>
+									<li>popper.js</li>
+									</ul>
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+
+					<div class="aboutSection">
+						<button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-outline-light">
+							About
+						</button>
+					</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container-fluid pt-3">
+		<div class="row">
+			<div class="tools col-0 ml-3 pr-0 overflow-scroll" style="overflow-y: scroll;height: calc(100vh - 5rem);">
+				<div class="list-group float-right" style="min-width: 50px; max-width: 60px">
+					<button type="button" tool="LogicInput" title="Logic Input" onclick="activeTool(this)"
+						class="list-group-item list-group-item-action pl-1">
+						<img src="./static/simulator/img/LogicInput.svg" class="ml-2" width="32">
+					</button>
+					<button type="button" tool="LogicOutput" title="Logic Output" onclick="activeTool(this)"
+						class="list-group-item list-group-item-action pl-1">
+						<img src="./static/simulator/img/LogicOutput.svg" class="ml-2" width="32">
+					</button>
+					<button type="button" tool="NOT" isGate="true" onclick="activeTool(this)"
+						class="list-group-item list-group-item-action pl-1">
+						<img src="./static/simulator/img/NOT.svg" width="50">
+					</button>
+					<button type="button" tool="AND" isGate="true" onclick="activeTool(this)"
+						class="list-group-item list-group-item-action pl-1">
+						<img src="./static/simulator/img/AND.svg" width="50">
+					</button>
+					<button type="button" tool="NAND" isGate="true" onclick="activeTool(this)"
+						class="list-group-item list-group-item-action pl-1">
+						<img src="./static/simulator/img/NAND.svg" width="50">
+					</button>
+					<button type="button" tool="OR" isGate="true" onclick="activeTool(this)"
+						class="list-group-item list-group-item-action pl-1">
+						<img src="./static/simulator/img/OR.svg" width="50">
+					</button>
+					<button type="button" tool="NOR" isGate="true" onclick="activeTool(this)"
+						class="list-group-item list-group-item-action pl-1">
+						<img src="./static/simulator/img/NOR.svg" width="50">
+					</button>
+					<button type="button" tool="XOR" isGate="true" onclick="activeTool(this)"
+						class="list-group-item list-group-item-action pl-1">
+						<img src="./static/simulator/img/XOR.svg" width="50">
+					</button>
+					<button type="button" tool="XNOR" isGate="true" onclick="activeTool(this)"
+						class="list-group-item list-group-item-action pl-1">
+						<img src="./static/simulator/img/XNOR.svg" width="50">
+					</button>
+				</div>
+			</div>
+			<div class="col-10 pl-0">
+				<div id="canvas-sim"></div>
+			</div>
+		</div>
+	</div>
+</body>
+
+
+</html>
